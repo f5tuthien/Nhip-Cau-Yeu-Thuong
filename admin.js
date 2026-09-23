@@ -1,5 +1,5 @@
-const SUPABASE_URL = "https://jrixojhbxdvzreyfhxol.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_IfX7Zx6QIZXGIWMH32FS1w_QqGM_vgH";
+const SUPABASE_URL = "https://enpjshkrnvsjjndvsbxa.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "sb_publishable_yrZLgnczeJHQN9gJ3Dkmgw_Jvvf8gEj";
 const db = (!SUPABASE_URL.includes("YOUR_")&&!SUPABASE_ANON_KEY.includes("YOUR_")) ? window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY) : null;
 let shelters=[], journeys=[], activities=[], teamMembers=[];
 const $=s=>document.querySelector(s);
