@@ -1,136 +1,75 @@
-<section id="activities" class="story-section action-section">
-  <div class="section-heading center">
-    <p class="eyebrow">TIẾN ĐỘ DỰ ÁN</p>
-    <h2>Biến sự quan tâm thành hành động.</h2>
-    <p>
-      Hành trình xây dựng Nhịp Cầu Yêu Thương từ tuần 2 đến tuần 9.
-    </p>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhịp Cầu Yêu Thương</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#home">🐾 Nhịp Cầu Yêu Thương <small>From compassion to action</small></a>
+  <nav id="nav">
+    <a href="#home">Trang chủ</a>
+    <a href="#shelters">Trại cứu hộ</a>
+    <div class="nav-dropdown"><button class="nav-drop-btn">Về Dự Án ⌄</button><div class="dropdown-menu">
+      <a href="#project">Giới thiệu dự án<small>Sứ mệnh, tầm nhìn và mục tiêu</small></a>
+      <a href="#journey">Hành trình thực hiện<small>Các mốc phát triển của dự án</small></a>
+      <a href="#activities">Hoạt động<small>Những điều cộng đồng có thể làm</small></a>
+    </div></div>
+    <div class="nav-dropdown"><button class="nav-drop-btn">Về Chúng Tôi ⌄</button><div class="dropdown-menu">
+      <a href="#team">Nhóm thực hiện<small>Những người xây dựng dự án</small></a>
+      <a href="#contact">Thông tin liên hệ<small>Kết nối với Nhịp Cầu Yêu Thương</small></a>
+    </div></div>
+  </nav>
+  <button id="themeBtn" aria-label="Đổi giao diện">☾</button>
+  <a class="header-cta" href="#join">Cùng hành động</a>
+  <button id="menuBtn" class="menu-btn">☰</button>
+</header>
+
+<main>
+<section id="home" class="story-hero">
+  <div class="hero-text">
+    <p class="eyebrow">TỪ THẤU HIỂU ĐẾN HÀNH ĐỘNG</p>
+    <h1>Kết nối yêu thương.<br><span>Thêm một cơ hội.</span></h1>
+    <p class="description">Nhịp Cầu Yêu Thương kết nối cộng đồng với các trại cứu hộ chó mèo, để mỗi người đều có thể tìm hiểu, sẻ chia và hành động theo cách của mình.</p>
+    <div class="actions"><a class="btn primary" href="#join">Cùng hành động →</a><a class="btn secondary" href="#shelters">Khám phá trại cứu hộ</a></div>
   </div>
-
-  <div class="project-timeline">
-
-    <!-- TUẦN 2 -->
-    <div class="timeline-item current">
-      <div class="timeline-dot">02</div>
-
-      <div class="timeline-card">
-        <div class="timeline-top">
-          <span class="timeline-week">TUẦN 2</span>
-          <span class="timeline-status">ĐANG THỰC HIỆN</span>
-        </div>
-
-        <h3>Hình thành ý tưởng</h3>
-
-        <p>
-          Xác định vấn đề, ý tưởng website và đối tượng mà dự án muốn hướng đến.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 3 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">03</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 3</span>
-
-        <h3>Phân tích yêu cầu</h3>
-
-        <p>
-          Xác định các chức năng, nội dung và cấu trúc chính của website.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 4 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">04</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 4</span>
-
-        <h3>Thiết kế giao diện</h3>
-
-        <p>
-          Thiết kế layout, màu sắc, navigation và bố cục các phần của website.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 5 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">05</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 5</span>
-
-        <h3>Phát triển website</h3>
-
-        <p>
-          Xây dựng các trang và triển khai những chức năng chính của hệ thống.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 6 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">06</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 6</span>
-
-        <h3>Kết nối dữ liệu</h3>
-
-        <p>
-          Kết nối Supabase, xây dựng cơ sở dữ liệu và các chức năng quản trị.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 7 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">07</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 7</span>
-
-        <h3>Hoàn thiện hệ thống</h3>
-
-        <p>
-          Hoàn thiện các chức năng, cải thiện giao diện và xử lý những vấn đề còn lại.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 8 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">08</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 8</span>
-
-        <h3>Kiểm thử</h3>
-
-        <p>
-          Kiểm tra chức năng, sửa lỗi và đảm bảo website hoạt động ổn định trên các thiết bị.
-        </p>
-      </div>
-    </div>
-
-    <!-- TUẦN 9 -->
-    <div class="timeline-item">
-      <div class="timeline-dot">09</div>
-
-      <div class="timeline-card">
-        <span class="timeline-week">TUẦN 9</span>
-
-        <h3>Hoàn thiện & trình bày</h3>
-
-        <p>
-          Hoàn thiện sản phẩm, chuẩn bị báo cáo và sẵn sàng cho phần trình bày dự án.
-        </p>
-      </div>
-    </div>
-
-  </div>
+  <div class="hero-image"><img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=85" alt="Chú chó được cứu hộ"><div class="floating-card"><strong>🐾 Mỗi hành động đều có ý nghĩa.</strong><span>Biết · Quan tâm · Hành động</span></div></div>
 </section>
+
+<section class="stats"><div><strong id="shelterCount">0</strong><p>Trại cứu hộ đang hiển thị</p></div><div><strong>24/7</strong><p>Thông tin có thể được truy cập</p></div><div><strong id="supportCount">0</strong><p>Lượt đăng ký hỗ trợ</p></div></section>
+
+<section id="project" class="story-section split-section">
+  <div><p class="eyebrow">VỀ DỰ ÁN</p><h2 id="projectTitle">Một nơi để biết về những sinh mệnh đang cần một mái ấm.</h2></div>
+  <div><div id="projectContent"><p>Website được xây dựng như một cây cầu giữa cộng đồng và các trại cứu hộ.</p></div><div id="projectTags" class="pill-row"></div></div>
+</section>
+
+<section id="shelters" class="section">
+  <div class="section-heading"><p class="eyebrow">HIỂU VỀ CÁC TRẠI</p><h2>Những nơi đang cần bạn.</h2><p>Tìm kiếm và lọc thông tin trại cứu hộ được lưu trên cơ sở dữ liệu online.</p></div>
+  <div class="filters"><input id="searchInput" type="search" placeholder="🔍 Tìm theo tên, địa điểm, nhu cầu..."><select id="categoryFilter"><option value="all">Tất cả nhu cầu</option><option value="food">Thức ăn</option><option value="medical">Y tế</option><option value="volunteer">Tình nguyện</option><option value="supplies">Vật dụng</option></select></div>
+  <div id="shelterCards" class="cards"></div><p id="emptyMessage" class="empty hidden">Không tìm thấy trại phù hợp.</p>
+</section>
+
+<section id="activities" class="story-section action-section">
+  <div class="section-heading center"><p class="eyebrow">CÁCH BẠN CÓ THỂ THAM GIA</p><h2>Biến sự quan tâm thành hành động.</h2><p>Danh sách hoạt động được cập nhật bởi quản trị viên.</p></div>
+  <div id="activityList" class="steps"></div>
+</section>
+
+<section id="join" class="join-section">
+  <div class="join-copy"><p class="eyebrow">CÙNG HÀNH ĐỘNG</p><h2>Hãy trở thành một nhịp cầu.</h2><p>Không cần đăng nhập. Chỉ cần để lại thông tin và chọn cách bạn muốn đồng hành.</p><div class="notice">❤️ Thông tin đăng ký được gửi đến đội ngũ quản trị để kết nối và hỗ trợ.</div></div>
+  <form id="volunteerForm" class="join-form"><label>Họ tên / biệt danh<input id="nameInput" required placeholder="Ví dụ: Gia Kiệt"></label><label>Email<input id="emailInput" type="email" required placeholder="you@example.com"></label><label>Bạn muốn hỗ trợ gì?<select id="helpInput" required><option value="">Chọn một hình thức</option><option>Chăm sóc thú cưng</option><option>Vận chuyển</option><option>Đóng góp thức ăn</option><option>Đóng góp vật dụng</option><option>Hỗ trợ y tế</option><option>Chia sẻ thông tin</option><option>Khác</option></select></label><label>Lời nhắn<textarea id="messageInput" rows="4" placeholder="Bạn muốn nhắn điều gì cho đội ngũ?"></textarea></label><label class="check"><input id="consentInput" type="checkbox" required>Tôi xác nhận thông tin trên là chính xác và đồng ý để đội ngũ liên hệ.</label><button class="btn primary" type="submit">Gửi đăng ký →</button><p id="formMessage" class="message"></p></form>
+</section>
+
+<section id="journey" class="story-section timeline-section"><div class="section-heading"><p class="eyebrow">HÀNH TRÌNH</p><h2>Hành trình thực hiện dự án.</h2><p>Các mốc thời gian có thể được thêm, sửa hoặc xóa từ trang quản trị.</p></div><div id="journeyList" class="timeline"></div></section>
+
+<section id="team" class="story-section team-section"><div><p class="eyebrow">VỀ CHÚNG TÔI</p><h2>Nhóm thực hiện</h2><p>Nhịp Cầu Yêu Thương được xây dựng với mong muốn tạo ra một không gian đơn giản, dễ hiểu và dễ tham gia cho những người muốn giúp đỡ động vật.</p></div><div id="teamList" class="team-grid"></div></section>
+
+<section id="contact" class="contact section"><p class="eyebrow">THÔNG TIN LIÊN HỆ</p><h2>Cùng tạo nên những điều tử tế.</h2><p>Nếu bạn đại diện cho một trại cứu hộ hoặc muốn đồng hành cùng dự án, hãy liên hệ với chúng tôi.</p><a class="btn primary" id="contactEmailLink" href="mailto:hello@example.com">Gửi email →</a></section>
+</main>
+
+<div id="detailModal" class="modal hidden"><div class="modal-box"><button id="closeModal" class="close-btn">✕</button><div id="modalContent"></div></div></div>
+<footer><div><h3>🐾 NHỊP CẦU YÊU THƯƠNG</h3><p>Biết về những sinh mệnh cần giúp đỡ. Quan tâm đến các trại cứu hộ. Hành động khi bạn có thể.</p></div><div class="footer-links"><a href="#project">Về dự án</a><a href="#team">Về chúng tôi</a><a href="#join">Cùng hành động</a><a href="#contact">Liên hệ</a></div><small>© 2026 Nhịp Cầu Yêu Thương.</small></footer>
+<script src="script.js"></script>
+</body></html>
+thay vào de mình cope
