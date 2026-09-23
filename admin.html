@@ -1,30 +1,833 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Quản trị - Nhịp Cầu Yêu Thương</title>
-<link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>.admin-login{max-width:520px;margin:80px auto}.admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}.admin-note{color:var(--muted);margin-bottom:20px}.admin-grid{display:grid;gap:25px}.admin-panel{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:var(--shadow)}.admin-item{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}.admin-item:last-child{border-bottom:0}.admin-actions{display:flex;gap:8px}.small-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:7px 11px;border-radius:9px;cursor:pointer}.small-btn.danger{color:#c0392b}.settings-row{display:flex;gap:10px}.settings-row input{flex:1}.back-link{display:inline-block;margin-top:20px;color:var(--primary);font-weight:700}.hidden{display:none!important}@media(max-width:700px){.admin-login{margin:35px 6%}.settings-row{flex-direction:column}.admin-top{align-items:flex-start;flex-direction:column}}</style>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+  Quản trị - Nhịp Cầu Yêu Thương
+</title>
+
+<link
+  rel="stylesheet"
+  href="style.css"
+>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+<style>
+
+.admin-login{
+  max-width:520px;
+  margin:80px auto
+}
+
+.admin-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px
+}
+
+.admin-note{
+  color:var(--muted);
+  margin-bottom:20px
+}
+
+.admin-grid{
+  display:grid;
+  gap:25px
+}
+
+.admin-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:var(--shadow)
+}
+
+.admin-item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid var(--border)
+}
+
+.admin-item:last-child{
+  border-bottom:0
+}
+
+.admin-actions{
+  display:flex;
+  gap:8px
+}
+
+.small-btn{
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--text);
+  padding:7px 11px;
+  border-radius:9px;
+  cursor:pointer
+}
+
+.small-btn.danger{
+  color:#c0392b
+}
+
+.settings-row{
+  display:flex;
+  gap:10px
+}
+
+.settings-row input{
+  flex:1
+}
+
+.back-link{
+  display:inline-block;
+  margin-top:20px;
+  color:var(--primary);
+  font-weight:700
+}
+
+.hidden{
+  display:none!important
+}
+
+@media(max-width:700px){
+
+  .admin-login{
+    margin:35px 6%
+  }
+
+  .settings-row{
+    flex-direction:column
+  }
+
+  .admin-top{
+    align-items:flex-start;
+    flex-direction:column
+  }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
-<header class="header"><a class="logo" href="index.html">🐾 Nhịp Cầu Yêu Thương</a><strong>Trang quản trị</strong></header>
+
+
+<header class="header">
+
+  <a
+    class="logo"
+    href="index.html"
+  >
+    🐾 Nhịp Cầu Yêu Thương
+  </a>
+
+  <strong>
+    Trang quản trị
+  </strong>
+
+</header>
+
+
 <main class="section">
-<div id="loginBox" class="admin-login admin-panel">
-  <p class="eyebrow">ADMIN ONLY</p><h1>Đăng nhập quản trị</h1><p class="admin-note">Trang này tách riêng khỏi website dành cho người dùng. Chỉ tài khoản có role <strong>admin</strong> mới quản lý được dữ liệu.</p>
-  <form id="loginForm" class="form-grid"><input id="email" type="email" required placeholder="Email admin"><input id="password" type="password" required placeholder="Mật khẩu"><button class="btn primary">Đăng nhập quản trị</button></form><p id="loginMessage" class="message"></p>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div
+  id="loginBox"
+  class="admin-login admin-panel"
+>
+
+  <p class="eyebrow">
+    ADMIN ONLY
+  </p>
+
+  <h1>
+    Đăng nhập quản trị
+  </h1>
+
+  <p class="admin-note">
+
+    Trang này tách riêng khỏi website dành cho người dùng.
+    Chỉ tài khoản có role
+    <strong>admin</strong>
+    mới quản lý được dữ liệu.
+
+  </p>
+
+
+  <form
+    id="loginForm"
+    class="form-grid"
+  >
+
+    <input
+      id="email"
+      type="email"
+      required
+      placeholder="Email admin"
+    >
+
+    <input
+      id="password"
+      type="password"
+      required
+      placeholder="Mật khẩu"
+    >
+
+    <button
+      class="btn primary"
+    >
+      Đăng nhập quản trị
+    </button>
+
+  </form>
+
+
+  <p
+    id="loginMessage"
+    class="message"
+  ></p>
+
 </div>
-<div id="adminApp" class="hidden">
-  <div class="admin-top"><div><p class="eyebrow">ADMIN</p><h1>Quản lý website</h1><p id="adminUser" class="admin-note"></p></div><button id="logoutBtn" class="btn secondary">Đăng xuất</button></div>
-  <div class="admin-grid">
-    <div class="admin-panel"><h2>📍 Thêm / sửa / xóa trại cứu hộ</h2><form id="shelterForm" class="form-grid"><input type="hidden" id="shelterId"><input id="shelterName" required placeholder="Tên trại"><input id="shelterLocation" required placeholder="Địa điểm"><select id="shelterCategory" required><option value="food">Thức ăn</option><option value="medical">Y tế</option><option value="volunteer">Tình nguyện</option><option value="supplies">Vật dụng</option></select><input id="shelterTag" required placeholder="Nhãn, ví dụ: ĐANG CẦN"><input id="shelterImage" placeholder="URL hình ảnh"><textarea id="shelterDescription" required rows="3" placeholder="Mô tả"></textarea><textarea id="shelterNeed" required rows="3" placeholder="Nhu cầu hiện tại"></textarea><div class="row"><button class="btn primary">Lưu trại</button><button id="cancelEdit" class="btn secondary" type="button">Hủy sửa</button></div></form><div id="adminShelterList"></div></div>
-    <div class="admin-panel"><h2>✉️ Gmail / Email liên hệ</h2><div class="settings-row"><input id="contactEmailInput" type="email" placeholder="gmail@example.com"><button id="saveContactEmail" class="btn primary" type="button">Lưu email</button></div><p id="emailMessage" class="message"></p></div>
-    <div class="admin-panel"><h2>📝 Giới thiệu dự án</h2><p class="admin-note">Nội dung hiển thị ở phần “Về Dự Án” trên trang chủ.</p><form id="projectForm" class="form-grid"><input id="projectTitleInput" required placeholder="Tiêu đề giới thiệu dự án"><textarea id="projectContentInput" required rows="5" placeholder="Nội dung giới thiệu dự án"></textarea><input id="projectImageInput" placeholder="URL hình ảnh (https://...)" type="url"><input id="projectTagsInput" placeholder="Từ khóa, cách nhau bằng dấu phẩy"><button class="btn primary">Lưu giới thiệu dự án</button></form><p id="projectMessage" class="message"></p></div>
-    <div class="admin-panel"><h2>🕒 Hành trình thực hiện</h2><p class="admin-note">Thêm, sửa, xóa từng mốc của dự án.</p><form id="journeyForm" class="form-grid"><input type="hidden" id="journeyId"><input id="journeyNumber" placeholder="Số thứ tự, ví dụ 01"><input id="journeyTitle" required placeholder="Tên mốc hành trình"><input id="journeyImage" placeholder="URL hình ảnh (https://...)" type="url"><textarea id="journeyDescription" required rows="3" placeholder="Mô tả mốc hành trình"></textarea><input id="journeyOrder" type="number" value="1" placeholder="Thứ tự hiển thị"><div class="row"><button class="btn primary">Lưu mốc</button><button id="cancelJourney" class="btn secondary" type="button">Hủy sửa</button></div></form><div id="adminJourneyList"></div></div>
-    <div class="admin-panel"><h2>🤝 Hoạt động / Cùng hành động</h2><p class="admin-note">Thêm các cách cộng đồng có thể tham gia. Nội dung sẽ xuất hiện ở phần “Hoạt động”.</p><form id="activityForm" class="form-grid"><input type="hidden" id="activityId"><input id="activityNumber" placeholder="Số thứ tự, ví dụ 01"><input id="activityTitle" required placeholder="Tên hoạt động"><input id="activityImage" placeholder="URL hình ảnh (https://...)" type="url"><textarea id="activityDescription" required rows="3" placeholder="Mô tả hoạt động"></textarea><input id="activityOrder" type="number" value="1" placeholder="Thứ tự hiển thị"><div class="row"><button class="btn primary">Lưu hoạt động</button><button id="cancelActivity" class="btn secondary" type="button">Hủy sửa</button></div></form><div id="adminActivityList"></div></div>
-    <div class="admin-panel"><h2>👥 Thành viên nhóm</h2><p class="admin-note">Thêm, sửa, xóa thông tin từng thành viên hiển thị ở phần “Về Chúng Tôi”.</p><form id="teamForm" class="form-grid"><input type="hidden" id="teamId"><input id="teamName" required placeholder="Họ tên thành viên"><input id="teamRole" required placeholder="Vai trò, ví dụ: Trưởng nhóm / Lập trình viên"><input id="teamImage" placeholder="URL ảnh đại diện"><textarea id="teamBio" required rows="3" placeholder="Giới thiệu ngắn về thành viên"></textarea><input id="teamOrder" type="number" value="1" placeholder="Thứ tự hiển thị"><div class="row"><button class="btn primary">Lưu thành viên</button><button id="cancelTeam" class="btn secondary" type="button">Hủy sửa</button></div></form><div id="adminTeamList"></div></div>
-    <div class="admin-panel"><h2>❤️ Đăng ký tình nguyện</h2><div id="volunteerList"></div></div>
+
+
+<!-- =========================
+     ADMIN APP
+========================= -->
+
+<div
+  id="adminApp"
+  class="hidden"
+>
+
+
+  <div class="admin-top">
+
+    <div>
+
+      <p class="eyebrow">
+        ADMIN
+      </p>
+
+      <h1>
+        Quản lý website
+      </h1>
+
+      <p
+        id="adminUser"
+        class="admin-note"
+      ></p>
+
+    </div>
+
+
+    <button
+      id="logoutBtn"
+      class="btn secondary"
+    >
+      Đăng xuất
+    </button>
+
   </div>
+
+
+  <div class="admin-grid">
+
+
+    <!-- =========================
+         TRẠI CỨU HỘ
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        📍 Thêm / sửa / xóa trại cứu hộ
+      </h2>
+
+
+      <form
+        id="shelterForm"
+        class="form-grid"
+      >
+
+        <input
+          type="hidden"
+          id="shelterId"
+        >
+
+
+        <input
+          id="shelterName"
+          required
+          placeholder="Tên trại"
+        >
+
+
+        <input
+          id="shelterLocation"
+          required
+          placeholder="Địa điểm / Thành phố"
+        >
+
+
+        <!-- THÔNG TIN LIÊN HỆ MỚI -->
+
+        <input
+          id="shelterAddress"
+          placeholder="🏠 Địa chỉ cụ thể"
+        >
+
+
+        <input
+          id="shelterPhone"
+          type="tel"
+          placeholder="📞 Số điện thoại"
+        >
+
+
+        <input
+          id="shelterEmail"
+          type="email"
+          placeholder="📧 Email"
+        >
+
+
+        <input
+          id="shelterWebsite"
+          placeholder="🌐 Facebook hoặc Website"
+        >
+
+
+        <select
+          id="shelterCategory"
+          required
+        >
+
+          <option value="food">
+            Thức ăn
+          </option>
+
+          <option value="medical">
+            Y tế
+          </option>
+
+          <option value="volunteer">
+            Tình nguyện
+          </option>
+
+          <option value="supplies">
+            Vật dụng
+          </option>
+
+        </select>
+
+
+        <input
+          id="shelterTag"
+          required
+          placeholder="Nhãn, ví dụ: ĐANG CẦN"
+        >
+
+
+        <input
+          id="shelterImage"
+          placeholder="URL hình ảnh"
+        >
+
+
+        <textarea
+          id="shelterDescription"
+          required
+          rows="3"
+          placeholder="Mô tả"
+        ></textarea>
+
+
+        <textarea
+          id="shelterNeed"
+          required
+          rows="3"
+          placeholder="Nhu cầu hiện tại"
+        ></textarea>
+
+
+        <div class="row">
+
+          <button
+            class="btn primary"
+          >
+            Lưu trại
+          </button>
+
+
+          <button
+            id="cancelEdit"
+            class="btn secondary"
+            type="button"
+          >
+            Hủy sửa
+          </button>
+
+        </div>
+
+      </form>
+
+
+      <div
+        id="adminShelterList"
+      ></div>
+
+    </div>
+
+
+    <!-- =========================
+         EMAIL LIÊN HỆ
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        ✉️ Gmail / Email liên hệ
+      </h2>
+
+
+      <div class="settings-row">
+
+        <input
+          id="contactEmailInput"
+          type="email"
+          placeholder="gmail@example.com"
+        >
+
+
+        <button
+          id="saveContactEmail"
+          class="btn primary"
+          type="button"
+        >
+          Lưu email
+        </button>
+
+      </div>
+
+
+      <p
+        id="emailMessage"
+        class="message"
+      ></p>
+
+    </div>
+
+
+    <!-- =========================
+         GIỚI THIỆU DỰ ÁN
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        📝 Giới thiệu dự án
+      </h2>
+
+      <p class="admin-note">
+
+        Nội dung hiển thị ở phần
+        “Về Dự Án”
+        trên trang chủ.
+
+      </p>
+
+
+      <form
+        id="projectForm"
+        class="form-grid"
+      >
+
+        <input
+          id="projectTitleInput"
+          required
+          placeholder="Tiêu đề giới thiệu dự án"
+        >
+
+
+        <textarea
+          id="projectContentInput"
+          required
+          rows="5"
+          placeholder="Nội dung giới thiệu dự án"
+        ></textarea>
+
+
+        <input
+          id="projectImageInput"
+          placeholder="URL hình ảnh (https://...)"
+          type="url"
+        >
+
+
+        <input
+          id="projectTagsInput"
+          placeholder="Từ khóa, cách nhau bằng dấu phẩy"
+        >
+
+
+        <button
+          class="btn primary"
+        >
+          Lưu giới thiệu dự án
+        </button>
+
+      </form>
+
+
+      <p
+        id="projectMessage"
+        class="message"
+      ></p>
+
+    </div>
+
+
+    <!-- =========================
+         HÀNH TRÌNH
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        🕒 Hành trình thực hiện
+      </h2>
+
+      <p class="admin-note">
+        Thêm, sửa, xóa từng mốc của dự án.
+      </p>
+
+
+      <form
+        id="journeyForm"
+        class="form-grid"
+      >
+
+        <input
+          type="hidden"
+          id="journeyId"
+        >
+
+
+        <input
+          id="journeyNumber"
+          placeholder="Số thứ tự, ví dụ 01"
+        >
+
+
+        <input
+          id="journeyTitle"
+          required
+          placeholder="Tên mốc hành trình"
+        >
+
+
+        <input
+          id="journeyImage"
+          placeholder="URL hình ảnh (https://...)"
+          type="url"
+        >
+
+
+        <textarea
+          id="journeyDescription"
+          required
+          rows="3"
+          placeholder="Mô tả mốc hành trình"
+        ></textarea>
+
+
+        <input
+          id="journeyOrder"
+          type="number"
+          value="1"
+          placeholder="Thứ tự hiển thị"
+        >
+
+
+        <div class="row">
+
+          <button
+            class="btn primary"
+          >
+            Lưu mốc
+          </button>
+
+
+          <button
+            id="cancelJourney"
+            class="btn secondary"
+            type="button"
+          >
+            Hủy sửa
+          </button>
+
+        </div>
+
+      </form>
+
+
+      <div
+        id="adminJourneyList"
+      ></div>
+
+    </div>
+
+
+    <!-- =========================
+         HOẠT ĐỘNG
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        🤝 Hoạt động / Cùng hành động
+      </h2>
+
+      <p class="admin-note">
+
+        Thêm các cách cộng đồng có thể tham gia.
+        Nội dung sẽ xuất hiện ở phần
+        “Hoạt động”.
+
+      </p>
+
+
+      <form
+        id="activityForm"
+        class="form-grid"
+      >
+
+        <input
+          type="hidden"
+          id="activityId"
+        >
+
+
+        <input
+          id="activityNumber"
+          placeholder="Số thứ tự, ví dụ 01"
+        >
+
+
+        <input
+          id="activityTitle"
+          required
+          placeholder="Tên hoạt động"
+        >
+
+
+        <input
+          id="activityImage"
+          placeholder="URL hình ảnh (https://...)"
+          type="url"
+        >
+
+
+        <textarea
+          id="activityDescription"
+          required
+          rows="3"
+          placeholder="Mô tả hoạt động"
+        ></textarea>
+
+
+        <input
+          id="activityOrder"
+          type="number"
+          value="1"
+          placeholder="Thứ tự hiển thị"
+        >
+
+
+        <div class="row">
+
+          <button
+            class="btn primary"
+          >
+            Lưu hoạt động
+          </button>
+
+
+          <button
+            id="cancelActivity"
+            class="btn secondary"
+            type="button"
+          >
+            Hủy sửa
+          </button>
+
+        </div>
+
+      </form>
+
+
+      <div
+        id="adminActivityList"
+      ></div>
+
+    </div>
+
+
+    <!-- =========================
+         TEAM
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        👥 Thành viên nhóm
+      </h2>
+
+      <p class="admin-note">
+
+        Thêm, sửa, xóa thông tin từng thành viên
+        hiển thị ở phần
+        “Về Chúng Tôi”.
+
+      </p>
+
+
+      <form
+        id="teamForm"
+        class="form-grid"
+      >
+
+        <input
+          type="hidden"
+          id="teamId"
+        >
+
+
+        <input
+          id="teamName"
+          required
+          placeholder="Họ tên thành viên"
+        >
+
+
+        <input
+          id="teamRole"
+          required
+          placeholder="Vai trò, ví dụ: Trưởng nhóm / Lập trình viên"
+        >
+
+
+        <input
+          id="teamImage"
+          placeholder="URL ảnh đại diện"
+        >
+
+
+        <textarea
+          id="teamBio"
+          required
+          rows="3"
+          placeholder="Giới thiệu ngắn về thành viên"
+        ></textarea>
+
+
+        <input
+          id="teamOrder"
+          type="number"
+          value="1"
+          placeholder="Thứ tự hiển thị"
+        >
+
+
+        <div class="row">
+
+          <button
+            class="btn primary"
+          >
+            Lưu thành viên
+          </button>
+
+
+          <button
+            id="cancelTeam"
+            class="btn secondary"
+            type="button"
+          >
+            Hủy sửa
+          </button>
+
+        </div>
+
+      </form>
+
+
+      <div
+        id="adminTeamList"
+      ></div>
+
+    </div>
+
+
+    <!-- =========================
+         VOLUNTEER
+    ========================= -->
+
+    <div class="admin-panel">
+
+      <h2>
+        ❤️ Đăng ký tình nguyện
+      </h2>
+
+
+      <div
+        id="volunteerList"
+      ></div>
+
+    </div>
+
+
+  </div>
+
 </div>
-<a class="back-link" href="index.html">← Quay lại website</a>
+
+
+<a
+  class="back-link"
+  href="index.html"
+>
+  ← Quay lại website
+</a>
+
+
 </main>
+
+
 <script src="admin.js"></script>
-</body></html>
+
+</body>
+
+</html>
