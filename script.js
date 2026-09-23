@@ -6,11 +6,14 @@ const configured =
   !SUPABASE_ANON_KEY.includes("YOUR_");
 
 const db = configured
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  ? window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    )
   : null;
 
 let shelters = [];
-let contactEmail = "hello@example.com";
+let contactEmail = "nhipcauyeuthuong@gmail.com";
 
 const $ = s => document.querySelector(s);
 
@@ -112,7 +115,7 @@ function renderShelters() {
 
   const result = shelters.filter(s =>
 
-    `${s.name} ${s.location} ${s.description} ${s.need} ${s.category}`
+    `${s.name} ${s.location} ${s.address || ""} ${s.phone || ""} ${s.email || ""} ${s.website || ""} ${s.description} ${s.need} ${s.category}`
       .toLowerCase()
       .includes(keyword)
 
@@ -566,7 +569,6 @@ async function submitVolunteer(e) {
 
     e.target.reset();
 
-    // Số liệu vẫn giữ ở 100+
     loadDemoStats();
 
   }
@@ -580,7 +582,13 @@ async function submitVolunteer(e) {
 
 async function loadContactEmail() {
 
-  if (!db) return;
+  if (!db) {
+
+    updateContactEmailUI();
+
+    return;
+
+  }
 
 
   const { data, error } =
@@ -611,8 +619,17 @@ function updateContactEmailUI() {
 
   if ($("#contactEmailLink")) {
 
-    $("#contactEmailLink").href =
-      `mailto:${contactEmail}`;
+    /*
+      Chỉ hiển thị email.
+      Không dùng mailto:
+    */
+
+    $("#contactEmailLink").textContent =
+      contactEmail;
+
+    $("#contactEmailLink").removeAttribute(
+      "href"
+    );
 
   }
 
@@ -726,6 +743,126 @@ $("#shelterCards")
       if (!s) return;
 
 
+      /* =========================
+         TẠO THÔNG TIN LIÊN HỆ
+      ========================= */
+
+      const contactInfo = `
+
+        <div
+          class="shelter-contact"
+          style="
+            margin-top:20px;
+            padding-top:16px;
+            border-top:1px solid var(--border);
+          "
+        >
+
+          <h4
+            style="
+              margin-bottom:12px;
+            "
+          >
+            📞 Thông tin liên hệ
+          </h4>
+
+
+          ${
+            s.address
+              ? `
+                <p>
+                  🏠
+                  <strong>
+                    Địa chỉ:
+                  </strong>
+
+                  ${escapeHTML(
+                    s.address
+                  )}
+                </p>
+              `
+              : ""
+          }
+
+
+          ${
+            s.phone
+              ? `
+                <p>
+                  📞
+                  <strong>
+                    Số điện thoại:
+                  </strong>
+
+                  ${escapeHTML(
+                    s.phone
+                  )}
+                </p>
+              `
+              : ""
+          }
+
+
+          ${
+            s.email
+              ? `
+                <p>
+                  📧
+                  <strong>
+                    Email:
+                  </strong>
+
+                  ${escapeHTML(
+                    s.email
+                  )}
+                </p>
+              `
+              : ""
+          }
+
+
+          ${
+            s.website
+              ? `
+                <p>
+                  🌐
+                  <strong>
+                    Facebook / Website:
+                  </strong>
+
+                  ${escapeHTML(
+                    s.website
+                  )}
+                </p>
+              `
+              : ""
+          }
+
+
+          ${
+            !s.address &&
+            !s.phone &&
+            !s.email &&
+            !s.website
+
+              ? `
+                <p>
+                  Chưa có thông tin liên hệ.
+                </p>
+              `
+
+              : ""
+          }
+
+        </div>
+
+      `;
+
+
+      /* =========================
+         NỘI DUNG MODAL
+      ========================= */
+
       $("#modalContent").innerHTML = `
 
         <p class="eyebrow">
@@ -756,6 +893,27 @@ $("#shelterCards")
         </p>
 
 
+        ${
+          s.address
+            ? `
+              <p>
+
+                🏠
+
+                <strong>
+                  Địa chỉ:
+                </strong>
+
+                ${escapeHTML(
+                  s.address
+                )}
+
+              </p>
+            `
+            : ""
+        }
+
+
         <p>
           ${escapeHTML(s.description)}
         </p>
@@ -772,6 +930,9 @@ $("#shelterCards")
           ${escapeHTML(s.need)}
 
         </p>
+
+
+        ${contactInfo}
 
       `;
 
@@ -843,7 +1004,6 @@ if (
 ========================= */
 
 // Luôn hiển thị số liệu minh họa
-// Không phụ thuộc Supabase
 loadDemoStats();
 
 
