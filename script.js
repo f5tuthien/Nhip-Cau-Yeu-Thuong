@@ -1,4 +1,4 @@
-const SUPABASE_URL = "https://enpjshkrnvsjjndvsbxa.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://enpjshkrnvsjjndvsbxa.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_yrZLgnczeJHQN9gJ3Dkmgw_Jvvf8gEj";
 const configured = !SUPABASE_URL.includes("YOUR_") && !SUPABASE_ANON_KEY.includes("YOUR_");
 const db = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
