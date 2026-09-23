@@ -32,15 +32,37 @@ const categoryName = c => ({
 
 
 /* =========================
+   SỐ LIỆU MINH HỌA
+========================= */
+
+function loadDemoStats() {
+
+  // Số trại cứu hộ minh họa
+  if ($("#shelterCount")) {
+    $("#shelterCount").textContent = "10+";
+  }
+
+  // Số lượt đăng ký hỗ trợ minh họa
+  if ($("#supportCount")) {
+    $("#supportCount").textContent = "100+";
+  }
+}
+
+
+/* =========================
    KIỂM TRA SUPABASE
 ========================= */
 
 function showSetupWarning() {
+
   if (!configured) {
+
     console.warn(
       "Hãy cấu hình Supabase URL và anon key trong script.js."
     );
+
   }
+
 }
 
 
@@ -55,40 +77,58 @@ async function loadShelters() {
   const { data, error } = await db
     .from("shelters")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("created_at", {
+      ascending: false
+    });
 
   if (error) {
+
     console.error(error);
+
     return;
+
   }
 
   shelters = data || [];
 
   renderShelters();
 
-  // SỐ LIỆU MINH HỌA
-  $("#shelterCount").textContent = "10+";
 }
 
+
+/* =========================
+   HIỂN THỊ TRẠI CỨU HỘ
+========================= */
 
 function renderShelters() {
 
   const keyword =
-    $("#searchInput").value.toLowerCase().trim();
+    $("#searchInput").value
+      .toLowerCase()
+      .trim();
 
   const category =
     $("#categoryFilter").value;
 
   const result = shelters.filter(s =>
+
     `${s.name} ${s.location} ${s.description} ${s.need} ${s.category}`
       .toLowerCase()
       .includes(keyword)
+
     &&
-    (category === "all" || s.category === category)
+
+    (
+      category === "all" ||
+      s.category === category
+    )
+
   );
+
 
   $("#shelterCards").innerHTML = result
     .map(s => `
+
       <article class="card">
 
         <img
@@ -102,12 +142,17 @@ function renderShelters() {
         <div class="card-body">
 
           <span class="tag">
+
             ${escapeHTML(
-              s.tag || categoryName(s.category)
+              s.tag ||
+              categoryName(s.category)
             )}
+
           </span>
 
-          <h3>${escapeHTML(s.name)}</h3>
+          <h3>
+            ${escapeHTML(s.name)}
+          </h3>
 
           <p>
             📍 ${escapeHTML(s.location)}
@@ -126,9 +171,12 @@ function renderShelters() {
           </a>
 
         </div>
+
       </article>
+
     `)
     .join("");
+
 
   $("#emptyMessage")
     .classList
@@ -136,6 +184,7 @@ function renderShelters() {
       "hidden",
       result.length !== 0
     );
+
 }
 
 
@@ -154,8 +203,11 @@ async function loadProjectContent() {
     .maybeSingle();
 
   if (error) {
+
     console.error(error);
+
     return;
+
   }
 
   if (data) {
@@ -163,8 +215,9 @@ async function loadProjectContent() {
     $("#projectTitle").textContent =
       data.title || "";
 
-    $("#projectContent").innerHTML =
-      `
+
+    $("#projectContent").innerHTML = `
+
       ${
         data.image
           ? `
@@ -172,7 +225,8 @@ async function loadProjectContent() {
               class="content-image project-content-image"
               src="${escapeHTML(data.image)}"
               alt="${escapeHTML(
-                data.title || "Hình ảnh dự án"
+                data.title ||
+                "Hình ảnh dự án"
               )}"
             >
           `
@@ -180,12 +234,17 @@ async function loadProjectContent() {
       }
 
       <p>
-        ${escapeHTML(data.content || "")
-          .replace(/\n/g, "<br>")}
+        ${escapeHTML(
+          data.content || ""
+        ).replace(/\n/g, "<br>")}
       </p>
-      `;
 
-    const tags = data.tags || [];
+    `;
+
+
+    const tags =
+      data.tags || [];
+
 
     $("#projectTags").innerHTML =
       tags
@@ -193,7 +252,9 @@ async function loadProjectContent() {
           `<span>${escapeHTML(t)}</span>`
         )
         .join("");
+
   }
+
 }
 
 
@@ -208,17 +269,26 @@ async function loadJourney() {
   const { data, error } = await db
     .from("journey_items")
     .select("*")
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: true });
+    .order("sort_order", {
+      ascending: true
+    })
+    .order("created_at", {
+      ascending: true
+    });
 
   if (error) {
+
     console.error(error);
+
     return;
+
   }
+
 
   $("#journeyList").innerHTML =
     (data || [])
       .map((x, i) => `
+
         <div>
 
           ${
@@ -228,7 +298,8 @@ async function loadJourney() {
                   class="content-image"
                   src="${escapeHTML(x.image)}"
                   alt="${escapeHTML(
-                    x.title || "Hình ảnh hành trình"
+                    x.title ||
+                    "Hình ảnh hành trình"
                   )}"
                 >
               `
@@ -236,10 +307,12 @@ async function loadJourney() {
           }
 
           <b>
+
             ${escapeHTML(
               x.number_label ||
               String(i + 1).padStart(2, "0")
             )}
+
           </b>
 
           <h3>
@@ -247,16 +320,22 @@ async function loadJourney() {
           </h3>
 
           <p>
+
             ${escapeHTML(
               x.description || ""
             ).replace(/\n/g, "<br>")}
+
           </p>
 
         </div>
+
       `)
       .join("")
+
     ||
+
     "<p>Chưa có dữ liệu hành trình.</p>";
+
 }
 
 
@@ -271,17 +350,26 @@ async function loadActivities() {
   const { data, error } = await db
     .from("activities")
     .select("*")
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: true });
+    .order("sort_order", {
+      ascending: true
+    })
+    .order("created_at", {
+      ascending: true
+    });
 
   if (error) {
+
     console.error(error);
+
     return;
+
   }
+
 
   $("#activityList").innerHTML =
     (data || [])
       .map((x, i) => `
+
         <article>
 
           ${
@@ -291,7 +379,8 @@ async function loadActivities() {
                   class="content-image activity-image"
                   src="${escapeHTML(x.image)}"
                   alt="${escapeHTML(
-                    x.title || "Hình ảnh hoạt động"
+                    x.title ||
+                    "Hình ảnh hoạt động"
                   )}"
                 >
               `
@@ -299,11 +388,14 @@ async function loadActivities() {
           }
 
           <span>
+
             ${escapeHTML(
               x.number_label ||
               String(i + 1).padStart(2, "0")
             )}
+
             ↗
+
           </span>
 
           <h3>
@@ -311,16 +403,22 @@ async function loadActivities() {
           </h3>
 
           <p>
+
             ${escapeHTML(
               x.description || ""
             ).replace(/\n/g, "<br>")}
+
           </p>
 
         </article>
+
       `)
       .join("")
+
     ||
+
     "<p>Chưa có hoạt động.</p>";
+
 }
 
 
@@ -335,17 +433,26 @@ async function loadTeamMembers() {
   const { data, error } = await db
     .from("team_members")
     .select("*")
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: true });
+    .order("sort_order", {
+      ascending: true
+    })
+    .order("created_at", {
+      ascending: true
+    });
 
   if (error) {
+
     console.error(error);
+
     return;
+
   }
+
 
   $("#teamList").innerHTML =
     (data || [])
       .map(x => `
+
         <article class="team-card">
 
           <div class="team-avatar">
@@ -363,6 +470,7 @@ async function loadTeamMembers() {
 
           </div>
 
+
           <div>
 
             <strong>
@@ -374,18 +482,24 @@ async function loadTeamMembers() {
             </p>
 
             <p>
+
               ${escapeHTML(
                 x.bio || ""
               ).replace(/\n/g, "<br>")}
+
             </p>
 
           </div>
 
         </article>
+
       `)
       .join("")
+
     ||
+
     "<p>Chưa có thông tin thành viên.</p>";
+
 }
 
 
@@ -397,13 +511,16 @@ async function submitVolunteer(e) {
 
   e.preventDefault();
 
+
   if (!db) {
 
     $("#formMessage").textContent =
       "⚠️ Website chưa kết nối Supabase.";
 
     return;
+
   }
+
 
   const payload = {
 
@@ -426,39 +543,34 @@ async function submitVolunteer(e) {
       $("#messageInput")
         .value
         .trim()
+
   };
+
 
   const { error } =
     await db
       .from("volunteers")
       .insert(payload);
 
+
   $("#formMessage").textContent =
     error
-      ? "Có lỗi: " + error.message
+
+      ? "Có lỗi: " +
+        error.message
+
       : "❤️ Đăng ký thành công! Cảm ơn bạn đã đồng hành.";
+
 
   if (!error) {
 
     e.target.reset();
 
-    // Giữ số liệu minh họa
-    loadSupportCount();
+    // Số liệu vẫn giữ ở 100+
+    loadDemoStats();
+
   }
-}
 
-
-/* =========================
-   LƯỢT ĐĂNG KÝ
-   SỐ LIỆU MINH HỌA
-========================= */
-
-async function loadSupportCount() {
-
-  // Không lấy số thật từ database.
-  // Website demo luôn hiển thị 100+.
-
-  $("#supportCount").textContent = "100+";
 }
 
 
@@ -470,6 +582,7 @@ async function loadContactEmail() {
 
   if (!db) return;
 
+
   const { data, error } =
     await db
       .from("site_settings")
@@ -477,15 +590,20 @@ async function loadContactEmail() {
       .eq("id", 1)
       .maybeSingle();
 
+
   if (
     !error &&
     data?.contact_email
   ) {
+
     contactEmail =
       data.contact_email;
+
   }
 
+
   updateContactEmailUI();
+
 }
 
 
@@ -497,6 +615,7 @@ function updateContactEmailUI() {
       `mailto:${contactEmail}`;
 
   }
+
 }
 
 
@@ -531,17 +650,21 @@ $("#themeBtn")
         .classList
         .toggle("dark");
 
+
       localStorage.setItem(
         "theme",
+
         document.body.classList.contains("dark")
           ? "dark"
           : "light"
       );
 
+
       $("#themeBtn").textContent =
         document.body.classList.contains("dark")
           ? "☀"
           : "☾";
+
     }
   );
 
@@ -585,9 +708,12 @@ $("#shelterCards")
           ".detail-link"
         );
 
+
       if (!link) return;
 
+
       e.preventDefault();
+
 
       const s =
         shelters.find(
@@ -596,42 +722,64 @@ $("#shelterCards")
             Number(link.dataset.id)
         );
 
+
       if (!s) return;
+
 
       $("#modalContent").innerHTML = `
 
         <p class="eyebrow">
+
           ${escapeHTML(
             s.tag ||
             categoryName(s.category)
           )}
+
         </p>
+
 
         <h3>
           ${escapeHTML(s.name)}
         </h3>
 
+
         <p>
+
           📍
-          <strong>Địa điểm:</strong>
+
+          <strong>
+            Địa điểm:
+          </strong>
+
           ${escapeHTML(s.location)}
+
         </p>
+
 
         <p>
           ${escapeHTML(s.description)}
         </p>
 
+
         <p>
+
           ❤️
-          <strong>Nhu cầu hiện tại:</strong>
+
+          <strong>
+            Nhu cầu hiện tại:
+          </strong>
+
           ${escapeHTML(s.need)}
+
         </p>
 
       `;
 
+
       $("#detailModal")
         .classList
         .remove("hidden");
+
     }
   );
 
@@ -665,6 +813,7 @@ $("#detailModal")
           .add("hidden");
 
       }
+
     }
   );
 
@@ -682,8 +831,10 @@ if (
     .classList
     .add("dark");
 
+
   $("#themeBtn")
     .textContent = "☀";
+
 }
 
 
@@ -691,12 +842,14 @@ if (
    KHỞI ĐỘNG WEBSITE
 ========================= */
 
+// Luôn hiển thị số liệu minh họa
+// Không phụ thuộc Supabase
+loadDemoStats();
+
+
 if (db) {
 
   loadShelters();
-
-  // Số liệu minh họa
-  loadSupportCount();
 
   loadContactEmail();
 
