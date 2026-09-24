@@ -1,223 +1,82 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nhịp Cầu Yêu Thương</title>
-  <meta name="description" content="Nhịp Cầu Yêu Thương – kết nối cộng đồng với các trại cứu hộ chó mèo.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhịp Cầu Yêu Thương</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="dark public-home">
-  <header class="header" id="home">
-    <a class="logo" href="#home" aria-label="Nhịp Cầu Yêu Thương">
-      <span class="logo-mark">🐾</span>
-      <span class="logo-copy">
-        <strong>Nhịp Cầu Yêu Thương</strong>
-        <small>FROM COMPASSION TO ACTION</small>
-      </span>
-    </a>
+<body>
+<header class="header">
+  <a class="logo" href="#home">🐾 Nhịp Cầu Yêu Thương <small>From compassion to action</small></a>
+  <nav id="nav">
+    <a href="#home">Trang chủ</a>
+    <a href="#shelters">Trại cứu hộ</a>
+    <div class="nav-dropdown"><button class="nav-drop-btn">Về Dự Án ⌄</button><div class="dropdown-menu">
+      <a href="#project">Giới thiệu dự án<small>Sứ mệnh, tầm nhìn và mục tiêu</small></a>
+      <a href="#journey">Hành trình thực hiện<small>Các mốc phát triển của dự án</small></a>
+      <a href="#activities">Hoạt động<small>Những điều cộng đồng có thể làm</small></a>
+    </div></div>
+    <div class="nav-dropdown"><button class="nav-drop-btn">Về Chúng Tôi ⌄</button><div class="dropdown-menu">
+      <a href="#team">Nhóm thực hiện<small>Những người xây dựng dự án</small></a>
+      <a href="#contact">Thông tin liên hệ<small>Kết nối với Nhịp Cầu Yêu Thương</small></a>
+    </div></div>
+  </nav>
+  <button id="themeBtn" aria-label="Đổi giao diện">☾</button>
+  <a class="header-cta" href="#join">Cùng hành động</a>
+  <button id="menuBtn" class="menu-btn">☰</button>
+</header>
 
-    <nav id="nav" class="nav">
-      <a href="#home">Trang chủ</a>
-      <a href="#shelters">Trại cứu hộ</a>
-      <div class="nav-dropdown">
-        <button class="nav-drop-btn" type="button">Về Dự Án <span>⌄</span></button>
-        <div class="dropdown-menu">
-          <a href="#project">Giới thiệu dự án<small>Sứ mệnh, tầm nhìn và mục tiêu</small></a>
-          <a href="#journey">Hành trình thực hiện<small>Các mốc phát triển của dự án</small></a>
-          <a href="#activities">Hoạt động<small>Những điều cộng đồng có thể làm</small></a>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <button class="nav-drop-btn" type="button">Về Chúng Tôi <span>⌄</span></button>
-        <div class="dropdown-menu">
-          <a href="#team">Nhóm thực hiện<small>Những người xây dựng dự án</small></a>
-          <a href="#contact">Thông tin liên hệ<small>Kết nối với Nhịp Cầu Yêu Thương</small></a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="header-actions">
-      <button id="themeBtn" class="theme-pill" type="button" aria-label="Đổi giao diện">☀</button>
-      <a class="header-cta" href="#join">Cùng hành động</a>
-      <button id="menuBtn" class="menu-btn" type="button" aria-label="Mở menu">☰</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero hero-reference">
-      <div class="hero-copy">
-        <p class="eyebrow">TỪ THẤU HIỂU ĐẾN HÀNH ĐỘNG</p>
-        <h1>Kết nối yêu<br>thương.<br><em>Thêm một<br>cơ hội.</em></h1>
-        <p class="hero-lead">Nhịp Cầu Yêu Thương kết nối cộng đồng với các trại cứu hộ chó mèo, để mỗi người đều có thể tìm hiểu, sẻ chia và hành động theo cách của mình.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#join">Cùng hành động <span>→</span></a>
-          <a class="btn btn-outline" href="#shelters">Khám phá trại cứu hộ</a>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-image-wrap">
-          <img class="hero-image" src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=90" alt="Chú chó được cứu hộ">
-          <div class="hero-badge">
-            <span class="hero-badge-icon">🐾</span>
-            <div>
-              <strong>Mỗi hành động đều có ý nghĩa.</strong>
-              <small>Biết · Quan tâm · Hành động</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="quick-stats">
-      <div><strong id="shelterCount">0</strong><span>trại cứu hộ đang hiển thị</span></div>
-      <div><strong>24/7</strong><span>thông tin có thể truy cập</span></div>
-      <div><strong id="supportCount">0</strong><span>lượt đăng ký hỗ trợ</span></div>
-    </section>
-
-    <section id="activities" class="section reference-section">
-      <div class="section-head split-head">
-        <div>
-          <p class="eyebrow">CỘNG ĐỒNG CÓ THỂ LÀM GÌ?</p>
-          <h2>Những hành động nhỏ,<br><em>tạo nên thay đổi thật.</em></h2>
-        </div>
-        <p>Chọn cách bạn muốn đồng hành cùng các trại cứu hộ. Danh sách được quản trị viên cập nhật trực tiếp.</p>
-      </div>
-      <div id="activityList" class="activity-grid"></div>
-    </section>
-
-    <section id="shelters" class="section shelters-section reference-section">
-      <div class="section-head">
-        <p class="eyebrow">HIỂU VỀ CÁC TRẠI</p>
-        <div class="head-row">
-          <h2>Những nơi đang<br><em>cần bạn.</em></h2>
-          <p>Tìm hiểu từng trại, nhu cầu hiện tại và thông tin liên hệ trước khi bạn đồng hành.</p>
-        </div>
-      </div>
-      <div class="filter-bar">
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="Tìm tên trại, địa điểm, nhu cầu...">
-        </label>
-        <select id="categoryFilter" aria-label="Lọc theo nhu cầu">
-          <option value="all">Tất cả nhu cầu</option>
-          <option value="food">Thức ăn</option>
-          <option value="medical">Y tế</option>
-          <option value="volunteer">Tình nguyện</option>
-          <option value="supplies">Vật dụng</option>
-        </select>
-      </div>
-      <div id="shelterCards" class="shelter-grid"></div>
-      <p id="emptyMessage" class="empty hidden">Không tìm thấy trại phù hợp.</p>
-    </section>
-
-    <section id="project" class="story-section project-section">
-      <div class="story-number">01</div>
-      <div class="story-title">
-        <p class="eyebrow">VỀ DỰ ÁN</p>
-        <h2 id="projectTitle">Một nơi để biết về những sinh mệnh đang cần một mái ấm.</h2>
-      </div>
-      <div class="story-content">
-        <div id="projectContent"><p>Website được xây dựng như một cây cầu giữa cộng đồng và các trại cứu hộ.</p></div>
-        <div id="projectTags" class="pill-row"></div>
-      </div>
-    </section>
-
-    <section id="journey" class="section journey-section reference-section">
-      <div class="section-head split-head">
-        <div>
-          <p class="eyebrow">HÀNH TRÌNH</p>
-          <h2>Từng bước để dự án<br><em>trở thành một cây cầu.</em></h2>
-        </div>
-        <p>Các mốc được thêm, sửa và sắp xếp từ trang quản trị.</p>
-      </div>
-      <div id="journeyList" class="journey-grid"></div>
-    </section>
-
-    <section id="team" class="section team-section reference-section">
-      <div class="section-head split-head">
-        <div>
-          <p class="eyebrow">VỀ CHÚNG TÔI</p>
-          <h2>Nhóm thực hiện.</h2>
-        </div>
-        <p>Những người cùng nhau xây dựng Nhịp Cầu Yêu Thương – từ ý tưởng, nội dung đến giao diện và công nghệ.</p>
-      </div>
-      <div id="teamList" class="team-grid"></div>
-    </section>
-
-    <section id="join" class="join-section">
-      <div class="join-art">
-        <p class="eyebrow">CÙNG HÀNH ĐỘNG</p>
-        <h2>Trở thành một<br><em>nhịp cầu.</em></h2>
-        <p>Không cần đăng nhập. Chỉ cần để lại thông tin và chọn một cách bạn muốn đồng hành.</p>
-        <div class="notice">❤️ Thông tin đăng ký được gửi tới đội ngũ quản trị để kết nối và hỗ trợ.</div>
-      </div>
-      <form id="volunteerForm" class="join-form">
-        <div class="form-row">
-          <label>Họ tên / biệt danh<input id="nameInput" required placeholder="Ví dụ: Gia Kiệt"></label>
-          <label>Email<input id="emailInput" type="email" required placeholder="you@example.com"></label>
-        </div>
-        <label>Bạn muốn hỗ trợ gì?
-          <select id="helpInput" required>
-            <option value="">Chọn một hình thức</option>
-            <option>Chăm sóc thú cưng</option>
-            <option>Vận chuyển</option>
-            <option>Đóng góp thức ăn</option>
-            <option>Đóng góp vật dụng</option>
-            <option>Hỗ trợ y tế</option>
-            <option>Chia sẻ thông tin</option>
-            <option>Khác</option>
-          </select>
-        </label>
-        <label>Lời nhắn<textarea id="messageInput" rows="5" placeholder="Bạn muốn nhắn điều gì cho đội ngũ?"></textarea></label>
-        <label class="check"><input id="consentInput" type="checkbox" required><span>Tôi xác nhận thông tin trên là chính xác và đồng ý để đội ngũ liên hệ.</span></label>
-        <div class="form-submit-row">
-          <button class="btn btn-primary" type="submit">Gửi đăng ký <span>→</span></button>
-          <p id="formMessage" class="message"></p>
-        </div>
-      </form>
-    </section>
-
-    <section id="contact" class="contact-section section reference-section">
-      <div>
-        <p class="eyebrow">THÔNG TIN LIÊN HỆ</p>
-        <h2>Cùng tạo nên những điều<br><em>tử tế.</em></h2>
-      </div>
-      <div class="contact-copy">
-        <p>Nếu bạn đại diện cho một trại cứu hộ hoặc muốn đồng hành cùng dự án, hãy kết nối với chúng tôi.</p>
-        <div class="contact-email" id="contactEmailLink">nhipcauyeuthuong@gmail.com</div>
-      </div>
-    </section>
-  </main>
-
-  <div id="detailModal" class="modal hidden" aria-hidden="true">
-    <div class="modal-box">
-      <button id="closeModal" class="close-btn" type="button" aria-label="Đóng">✕</button>
-      <div id="modalContent"></div>
-    </div>
+<main>
+<section id="home" class="story-hero">
+  <div class="hero-text">
+    <p class="eyebrow">TỪ THẤU HIỂU ĐẾN HÀNH ĐỘNG</p>
+    <h1>Kết nối yêu thương.<br><span>Thêm một cơ hội.</span></h1>
+    <p class="description">Nhịp Cầu Yêu Thương kết nối cộng đồng với các trại cứu hộ chó mèo, để mỗi người đều có thể tìm hiểu, sẻ chia và hành động theo cách của mình.</p>
+    <div class="actions"><a class="btn primary" href="#join">Cùng hành động →</a><a class="btn secondary" href="#shelters">Khám phá trại cứu hộ</a></div>
   </div>
+  <div class="hero-image"><img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=85" alt="Chú chó được cứu hộ"><div class="floating-card"><strong>🐾 Mỗi hành động đều có ý nghĩa.</strong><span>Biết · Quan tâm · Hành động</span></div></div>
+</section>
 
-  <footer class="footer">
-    <div class="footer-main">
-      <div>
-        <a class="footer-logo" href="#home">🐾 NHỊP CẦU YÊU THƯƠNG</a>
-        <p>Biết về những sinh mệnh cần giúp đỡ. Quan tâm đến các trại cứu hộ. Hành động khi bạn có thể.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#project">Về dự án</a>
-        <a href="#shelters">Trại cứu hộ</a>
-        <a href="#team">Nhóm thực hiện</a>
-        <a href="#join">Cùng hành động</a>
-      </div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Nhịp Cầu Yêu Thương.</span><span>From compassion to action.</span></div>
-  </footer>
+<section class="stats"><div><strong id="shelterCount">0</strong><p>Trại cứu hộ đang hiển thị</p></div><div><strong>24/7</strong><p>Thông tin có thể được truy cập</p></div><div><strong id="supportCount">0</strong><p>Lượt đăng ký hỗ trợ</p></div></section>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<section id="project" class="story-section split-section">
+  <div><p class="eyebrow">VỀ DỰ ÁN</p><h2 id="projectTitle">Một nơi để biết về những sinh mệnh đang cần một mái ấm.</h2></div>
+  <div><div id="projectContent"><p>Website được xây dựng như một cây cầu giữa cộng đồng và các trại cứu hộ.</p></div><div id="projectTags" class="pill-row"></div></div>
+</section>
+
+<section id="shelters" class="section">
+  <div class="section-heading"><p class="eyebrow">HIỂU VỀ CÁC TRẠI</p><h2>Những nơi đang cần bạn.</h2><p>Tìm kiếm và lọc thông tin trại cứu hộ được lưu trên cơ sở dữ liệu online.</p></div>
+  <div class="filters"><input id="searchInput" type="search" placeholder="🔍 Tìm theo tên, địa điểm, nhu cầu..."><select id="categoryFilter"><option value="all">Tất cả nhu cầu</option><option value="food">Thức ăn</option><option value="medical">Y tế</option><option value="volunteer">Tình nguyện</option><option value="supplies">Vật dụng</option></select></div>
+  <div id="shelterCards" class="cards"></div><p id="emptyMessage" class="empty hidden">Không tìm thấy trại phù hợp.</p>
+</section>
+
+<section id="activities" class="story-section action-section">
+  <div class="section-heading center"><p class="eyebrow">CÁCH BẠN CÓ THỂ THAM GIA</p><h2>Biến sự quan tâm thành hành động.</h2><p>Danh sách hoạt động được cập nhật bởi quản trị viên.</p></div>
+  <div id="activityList" class="steps"></div>
+</section>
+
+<section id="join" class="join-section">
+  <div class="join-copy"><p class="eyebrow">CÙNG HÀNH ĐỘNG</p><h2>Hãy trở thành một nhịp cầu.</h2><p>Không cần đăng nhập. Chỉ cần để lại thông tin và chọn cách bạn muốn đồng hành.</p><div class="notice">❤️ Thông tin đăng ký được gửi đến đội ngũ quản trị để kết nối và hỗ trợ.</div></div>
+  <form id="volunteerForm" class="join-form"><label>Họ tên / biệt danh<input id="nameInput" required placeholder="Ví dụ: Gia Kiệt"></label><label>Email<input id="emailInput" type="email" required placeholder="you@example.com"></label><label>Bạn muốn hỗ trợ gì?<select id="helpInput" required><option value="">Chọn một hình thức</option><option>Chăm sóc thú cưng</option><option>Vận chuyển</option><option>Đóng góp thức ăn</option><option>Đóng góp vật dụng</option><option>Hỗ trợ y tế</option><option>Chia sẻ thông tin</option><option>Khác</option></select></label><label>Lời nhắn<textarea id="messageInput" rows="4" placeholder="Bạn muốn nhắn điều gì cho đội ngũ?"></textarea></label><label class="check"><input id="consentInput" type="checkbox" required>Tôi xác nhận thông tin trên là chính xác và đồng ý để đội ngũ liên hệ.</label><button class="btn primary" type="submit">Gửi đăng ký →</button><p id="formMessage" class="message"></p></form>
+</section>
+
+<section id="journey" class="story-section timeline-section"><div class="section-heading"><p class="eyebrow">HÀNH TRÌNH</p><h2>Hành trình thực hiện dự án.</h2><p>Các mốc thời gian có thể được thêm, sửa hoặc xóa từ trang quản trị.</p></div><div id="journeyList" class="timeline"></div></section>
+
+<section id="team" class="team-section-reference" aria-labelledby="teamTitle">
+  <div class="team-intro">
+    <p class="eyebrow">VỀ CHÚNG TÔI</p>
+    <h2 id="teamTitle">Nhóm thực hiện</h2>
+    <p>Những thành viên đứng phía sau Nhịp Cầu Yêu Thương, cùng nhau biến sự quan tâm thành một sản phẩm có ích cho cộng đồng.</p>
+  </div>
+  <div id="teamList" class="team-reference-grid"></div>
+</section>
+
+<section id="contact" class="contact section"><p class="eyebrow">THÔNG TIN LIÊN HỆ</p><h2>Cùng tạo nên những điều tử tế.</h2><p>Nếu bạn đại diện cho một trại cứu hộ hoặc muốn đồng hành cùng dự án, hãy liên hệ với chúng tôi.</p><a class="btn primary" id="contactEmailLink" href="mailto:hello@example.com">Gửi email →</a></section>
+</main>
+
+<div id="detailModal" class="modal hidden"><div class="modal-box"><button id="closeModal" class="close-btn">✕</button><div id="modalContent"></div></div></div>
+<footer><div><h3>🐾 NHỊP CẦU YÊU THƯƠNG</h3><p>Biết về những sinh mệnh cần giúp đỡ. Quan tâm đến các trại cứu hộ. Hành động khi bạn có thể.</p></div><div class="footer-links"><a href="#project">Về dự án</a><a href="#team">Về chúng tôi</a><a href="#join">Cùng hành động</a><a href="#contact">Liên hệ</a></div><small>© 2026 Nhịp Cầu Yêu Thương.</small></footer>
+<script src="script.js"></script>
+</body></html>
+
