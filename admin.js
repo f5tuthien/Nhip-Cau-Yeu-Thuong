@@ -1,5 +1,6 @@
-const SUPABASE_URL = "https://enpjshkrnvsjjndvsbxa.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_yrZLgnczeJHQN9gJ3Dkmgw_Jvvf8gEj";
+
+const SUPABASE_URL = "https://ykeixfdewbupcwbaadwc.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_biJCp0wkpIalS5b_zDxTYw_tF0caxbm";
 
 const db =
   (!SUPABASE_URL.includes("YOUR_") &&
